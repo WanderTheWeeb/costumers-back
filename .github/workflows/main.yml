@@ -1,0 +1,30 @@
+name: build and test feature branch
+
+on:
+  push:
+    branches:
+      - feature/*
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: pull and checkoyt from git repostiory
+        run: |
+          echo "Pulling and checking out from git repository"
+
+      
+      - name: Set up JDK 11
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: "17"
+      
+      - name: Build with Maven
+        run: |
+          mvn clean install
+          echo "build with maven"
+
+          
